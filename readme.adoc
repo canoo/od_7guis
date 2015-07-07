@@ -23,6 +23,6 @@ https://github.com/eugenkiss/7guis/wiki[7 GUIs: A Notational Usability Benchmark
 
 Here is the list of the currently implemented GUIs:
 
-. link:01_counter/readme.adoc[Counter]
-. link:02_temperature_converter/readme.adoc[Temperature Converter]
-. link:03_flight_booker/readme.adoc[Flight Booker]
+. link:01_counter[Counter]
+. link:02_temperature_converter[Temperature Converter]
+. link:03_flight_booker[Flight Booker]
