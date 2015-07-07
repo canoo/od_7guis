@@ -1,0 +1,9 @@
+out/
+build/
+.gradle/
+.idea/
+.lazybones/
+*.iml
+classes/
+00_start/
+
