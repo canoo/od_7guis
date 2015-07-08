@@ -30,13 +30,13 @@ Alternatively you can convert the gradle files to maven pom files.
 From an OpenDolphin point of view the interesting parts are the following:
 
 In the start routine of the JavaFX Application *setupStage* is called which creates all the widgets for the GUI.
-No widgets are not populated with meaningful data yet.
+The widgets are not populated with meaningful data yet.
 
 Then *initializePMs* is called which sends the *INIT* command to the server.
 As in the _counter_ example *setupBinding* is called in it's _OnFinishedHandler_ without using the passed presentation models.
 
-At the point in time it is clear that all the PMs exist on the serverside and on the clientside.
-This means the widgets and the presentation modesls can be safely bound to each other.
+At this point in time it is clear that all the PMs exist on the serverside and on the clientside.
+This means it is safe to bind the widgets and the presentation models to each other.
 
 In *setupBinding*
 
@@ -66,8 +66,8 @@ fahrenheitTextField.focusedProperty().addListener((s,o,gained) -> {
 });
 ----
 
-As expected the textfields for _celsius_ and _fahrenheit_ are bound to the appropriate Attributes.
-More insteresting is the Attribute *ATT_DIRECTION* which is an indicator for client and server in which
+As expected the textfields for _celsius_ and _fahrenheit_ are bound to the appropriate attributes.
+More insteresting is the attribute *ATT_DIRECTION* which is an indicator for client and server in which
 direction the conversion should go.
 It is set appropriately when either the _celsius_ or the _fahrenheit_ textfield get the focus.
 We will see later how the serverside makes use of it.
@@ -106,13 +106,13 @@ pm.getAt(ATT_CELSIUS).addPropertyChangeListener("value", evt -> {
 
 
 <1> If ATT_DIRECTION is not in the expected mode we do nothing. This mechanism prevents endless cyclic updates between the two filds due to rounding errors.
-<2> After having applied the the temperature conversion ATT_FAHRENHEIT is updated accordingly.
+<2> After having applied the temperature conversion ATT_FAHRENHEIT is updated accordingly.
 
-The PropertyCChangeListener for ATT_FAHRENHEIT looks almost the same.
+The PropertyChangeListener for ATT_FAHRENHEIT looks almost the same.
 
 Note that all this is done on the serverside and the code only deals with the PMs on the serverside.
-The code is completly independent from any GUI technology.
-But since OpenDolphin shares the presentation model between the server and the client and we have bound the widgets to the PMs on the client the values changed
+The code is completely independent from any GUI technology.
+But since OpenDolphin shares the presentation models between the server and the client and we have bound the widgets to the PMs on the client side the values changed
 on the serverside automatically appear on the GUI.
 
 

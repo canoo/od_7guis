@@ -30,13 +30,13 @@ Alternatively you can convert the gradle files to maven pom files.
 Let's start again with _Application.java_.
 In the previous example the initialization of the presentation models was done by calling the INIT command and then bind the widgets to them in the onFinishedHandler
 which is called when the command completes.
-In this example (in the bootstrap routine) it is done exactly the same using the CREATE_PMS command.
+In this example (in the bootstrap routine) it is done in exactly the same way using the CREATE_PMS command.
 But in addition, when the binding is done the initialization of the data is also done from the serverside by calling the INIT_DATA command.
 
 Why do we split the initialization process into a CREATE_PMS and an INIT_DATE phase?
 Short answer: Because splitting the initilization procedure into two steps makes sure that data changes are properly applied at startup.
 
-Long answer: Data changes happen either when the user changes data in a text widget for example.
+Long answer: Data changes happen when the user changes data in a text widget for example.
 This is the obvious way.
 But they also happen during the initilization process and this is the problematic case:
 when they happen before all bindings are completely set up it is likely that some data changes get lost.
@@ -52,7 +52,6 @@ Apart from using some helper classes for the widget binding it does not contain 
 It simply contains the client side widget binding code.
 
 The OnFinishedHandler for INIT_DATA is `MainViewInitializer.handleDataInitializedEvent`.
-TODO: check why code needs to do anything where and why existing binding is not sufficient.
 
 
 On the *serverside* the CREATE_PMS command creates the PM by calling _PMCreator.createPMs()_ and _PMBinder.initializePMBinding()_:
@@ -107,7 +106,7 @@ public static void initializePMBinding(ServerDolphin serverDolphin, DomainLogic 
 <1> Whenever START_DATE changes check if it is a valid date string and set the result on START_DATE/VALID_TAG. START_DATE/VALID_TAG
 then can be used in the GUI binding code for the red background of the textfield.
 
-<2> For attribute to attribute binding I usually use *PropertyChangeListener*s.
+<2> For attribute to attribute binding I usually use *PropertyChangeListener* s.
 One could think of a DSL layer above them for easier usage but that does not exist yet.
 
 Now let us look at the OnFinishedHandler for INIT_DATA:
@@ -118,11 +117,11 @@ Now let us look at the OnFinishedHandler for INIT_DATA:
 ClientPresentationModel pm = clientDolphin.getAt(PM_APP);
 ComboBox<Pair<String, String>> cb = mainView.flightTypeComboBox;
 
-cb.getItems().addAll(FXCollections.observableArrayList(pairlistFromString(SharedDolphinFunctions.stringValue(pm.getAt(ATT_FLIGHT_TYPES))))); // #<1>
+cb.getItems().addAll(FXCollections.observableArrayList(pairlistFromString(SharedDolphinFunctions.stringValue(pm.getAt(ATT_FLIGHT_TYPES))))); // <1>
 
 ODComboBoxes.populateFromAttribute(cb, pm.getAt(ATT_FLIGHT_TYPE));
 
-ODTextFields.populateFromAttribute(mainView.startDateTextField, pm.getAt(ATT_START_DATE)); // #<2>
+ODTextFields.populateFromAttribute(mainView.startDateTextField, pm.getAt(ATT_START_DATE)); // <2>
 ODTextFields.populateFromAttribute(mainView.returnDateTextField, pm.getAt(ATT_RETURN_DATE));
 
 ----

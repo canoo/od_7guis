@@ -5,7 +5,7 @@ and we thought it would be great to have an OpenDolphin implementation of it.
 
 For me not necessarily the notational usability aspect is important but to find a good OpenDolphin implementation.
 
-So far I have implemented 3 of the GUIs. In the following blog posts I will explain
+So far I have implemented 3 of the GUIs. In the descriptions of the examples I will explain
 how I implemented them and what I have learned while doing it.
 
 Some of the 7 GUIs are only concerned with UI toolkit functionality.
