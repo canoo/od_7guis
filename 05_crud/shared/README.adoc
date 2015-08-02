@@ -1,0 +1,13 @@
+==============================
+New Open Dolphin shared module shared got created.
+
+Next:
+
+- cd shared
+- ./gradlew build
+
+You can find more info here:
+
+- https://github.com/canoo/open-dolphin-lazybones-templates
+- http://www.open-dolphin.org/
+==============================
